@@ -1,10 +1,26 @@
 import React from "react";
-import axios, { Axios } from "axios";
+import axios from "axios";
+
 function App() {
   const callApi = () => {
-    axios.get("https://v2.jokeapi.dev/joke/Any").then((response) => {
-      console.log(response);
-    });
+    // var axios = require("axios").default;
+    var options = {
+      method: "GET",
+      url: "https://yfapi.net/v11/finance/quoteSummary/AAPL",
+      params: { modules: "defaultKeyStatistics,assetProfile" },
+      headers: {
+        "x-api-key": "",
+      },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   };
   return (
     <div className="App">
