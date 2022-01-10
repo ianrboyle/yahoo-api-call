@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 function App() {
-  const [companyInfo, setInfo] = useState("");
+  const [companyInfo, setInfo] = useState([]);
   const callApi = () => {
     // var axios = require("axios").default;
     var options = {
@@ -17,8 +17,9 @@ function App() {
     axios
       .request(options)
       .then(function (response) {
-        let address = response.data.quoteSummary.result[0].assetProfile.address1;
-        console.log(response.data.quoteSummary.result[0].assetProfile.address1);
+        const address = response.data.quoteSummary.result[0].assetProfile;
+        // const results = response.data.quoteSummary;
+        console.log(response.data);
         setInfo(address);
       })
       .catch(function (error) {
@@ -29,7 +30,7 @@ function App() {
   return (
     <div className="App">
       <button onClick={callApi}>Get Joke</button>
-      <p>{companyInfo}</p>
+      <p>{companyInfo.address1}</p>
     </div>
   );
 }
